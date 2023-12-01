@@ -11,6 +11,7 @@
 		9819CA322B19F35C00890F4A /* BrokerFilterBubbleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819CA312B19F35C00890F4A /* BrokerFilterBubbleCellView.swift */; };
 		9819CA342B19F3B800890F4A /* BrokerFilterScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819CA332B19F3B800890F4A /* BrokerFilterScrollView.swift */; };
 		9819CA362B19F42C00890F4A /* BrokerFilterBubbleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819CA352B19F42C00890F4A /* BrokerFilterBubbleScrollView.swift */; };
+		9819CA382B19F48000890F4A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819CA372B19F48000890F4A /* ViewModel.swift */; };
 		984BB18A2B18D2F7000F332D /* ScrollViweUIViewRepresentableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BB1892B18D2F7000F332D /* ScrollViweUIViewRepresentableApp.swift */; };
 		984BB18C2B18D2F7000F332D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BB18B2B18D2F7000F332D /* ContentView.swift */; };
 		984BB18E2B18D2F8000F332D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 984BB18D2B18D2F8000F332D /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		9819CA312B19F35C00890F4A /* BrokerFilterBubbleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokerFilterBubbleCellView.swift; sourceTree = "<group>"; };
 		9819CA332B19F3B800890F4A /* BrokerFilterScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokerFilterScrollView.swift; sourceTree = "<group>"; };
 		9819CA352B19F42C00890F4A /* BrokerFilterBubbleScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokerFilterBubbleScrollView.swift; sourceTree = "<group>"; };
+		9819CA372B19F48000890F4A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		984BB1862B18D2F7000F332D /* ScrollViweUIViewRepresentable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViweUIViewRepresentable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		984BB1892B18D2F7000F332D /* ScrollViweUIViewRepresentableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViweUIViewRepresentableApp.swift; sourceTree = "<group>"; };
 		984BB18B2B18D2F7000F332D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				9819CA352B19F42C00890F4A /* BrokerFilterBubbleScrollView.swift */,
 				9819CA332B19F3B800890F4A /* BrokerFilterScrollView.swift */,
 				9819CA312B19F35C00890F4A /* BrokerFilterBubbleCellView.swift */,
+				9819CA372B19F48000890F4A /* ViewModel.swift */,
 				984BB18D2B18D2F8000F332D /* Assets.xcassets */,
 				984BB18F2B18D2F8000F332D /* Preview Content */,
 				9819CA2F2B19C1F900890F4A /* BrokerFilterType.swift */,
@@ -155,6 +158,7 @@
 				984BB18C2B18D2F7000F332D /* ContentView.swift in Sources */,
 				9819CA322B19F35C00890F4A /* BrokerFilterBubbleCellView.swift in Sources */,
 				984BB18A2B18D2F7000F332D /* ScrollViweUIViewRepresentableApp.swift in Sources */,
+				9819CA382B19F48000890F4A /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,21 +7,6 @@
 
 import SwiftUI
 
-final class ViewModel: ObservableObject {
-
-    @Published var chosenFilterType: BrokersFilterType = .all
-
-    func setChosenFilter(filterType: BrokersFilterType) {
-        guard chosenFilterType != filterType else {
-            return
-        }
-        
-        chosenFilterType = filterType
-        print(chosenFilterType)
-    }
-
-}
-
 struct ContentView: View {
 
     @StateObject var viewModel = ViewModel()
