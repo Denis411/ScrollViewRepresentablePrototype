@@ -38,8 +38,6 @@ struct ContentView: View {
 
 struct BrokerFilterBubbleScrollView: UIViewRepresentable {
 
-    private let filterTypes: [BrokersFilterType] = BrokersFilterType.allCases
-
     private let chosenFilterType: BrokersFilterType
     private let chooseFilterAction: (BrokersFilterType) -> Void
 
@@ -55,20 +53,54 @@ struct BrokerFilterBubbleScrollView: UIViewRepresentable {
     private let horizontalStackView = UIStackView()
 
     func makeUIView(context: Context) -> some UIView {
-        setStackView()
-        setScrollView()
-        return scrollView
+        return BrokerFilterScrollView(
+            chosenFilterType: chosenFilterType,
+            chooseFilterAction: chooseFilterAction
+        )
     }
 
     func updateUIView(_ uiView: UIViewType, context: Context) {
+        (uiView as? BrokerFilterScrollView)?.updateChosenFilterType(chosenFilterType)
+    }
+
+}
+
+final class BrokerFilterScrollView: UIScrollView {
+
+    private let horizontalStackView = UIStackView()
+
+    private let filterTypes: [BrokersFilterType] = BrokersFilterType.allCases
+    private var chosenFilterType: BrokersFilterType
+    private let chooseFilterAction: (BrokersFilterType) -> Void
+
+    init(
+        chosenFilterType: BrokersFilterType,
+        chooseFilterAction: @escaping (BrokersFilterType) -> Void
+    ) {
+        self.chosenFilterType = chosenFilterType
+        self.chooseFilterAction = chooseFilterAction
+        super.init(frame: .zero)
+        setUpSelf()
+        setStackView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func updateChosenFilterType(_ newChosenFilterType: BrokersFilterType) {
+        chosenFilterType = newChosenFilterType
+
         for orrangedView in horizontalStackView.arrangedSubviews {
             (orrangedView as? BrokerFilterBubbleCellView)?.setChosenFilterType(chosenFilterType)
         }
     }
 
-}
-
-extension BrokerFilterBubbleScrollView {
+    private func setUpSelf() {
+        self.showsHorizontalScrollIndicator = false
+        self.bounces = true
+        self.backgroundColor = .green
+    }
 
     private func setStackView() {
         horizontalStackView.axis = .horizontal
@@ -76,12 +108,12 @@ extension BrokerFilterBubbleScrollView {
         horizontalStackView.alignment = .leading
         horizontalStackView.distribution = .fill
 
-        scrollView.addSubview(horizontalStackView)
+        self.addSubview(horizontalStackView)
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        horizontalStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        horizontalStackView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        horizontalStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        horizontalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        horizontalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        horizontalStackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        horizontalStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 
         createBubbleViews()
     }
@@ -96,13 +128,6 @@ extension BrokerFilterBubbleScrollView {
         }
 
     }
-
-    private func setScrollView() {
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.bounces = true
-        scrollView.backgroundColor = .green
-    }
-
 }
 
 
@@ -137,7 +162,7 @@ final class BrokerFilterBubbleCellView: UILabel {
     }
 
     public func setChosenFilterType(_ chosenFilterType: BrokersFilterType) {
-        if chosenFilterType == chosenFilterType {
+        if chosenFilterType == filterType {
             self.layer.backgroundColor = UIColor.yellow.cgColor
         } else {
             self.layer.backgroundColor = UIColor.orange.cgColor
