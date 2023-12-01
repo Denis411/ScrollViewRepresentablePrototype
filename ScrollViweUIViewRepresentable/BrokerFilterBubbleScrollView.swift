@@ -20,9 +20,6 @@ struct BrokerFilterBubbleScrollView: UIViewRepresentable {
         self.chooseFilterAction = chooseFilterAction
     }
 
-    private let scrollView = UIScrollView()
-    private let horizontalStackView = UIStackView()
-
     func makeUIView(context: Context) -> some UIView {
         return BrokerFilterScrollView(
             chosenFilterType: chosenFilterType,
