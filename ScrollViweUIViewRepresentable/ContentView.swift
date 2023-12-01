@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+let bubbleNames = BrokersFilterType.allCases.map { $0.title }
+
 struct ContentView: View {
 
     var body: some View {
         VStack {
             Text("hi")
-            BrokerFilterBubbleScrollView(bubbleNames: ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth"])
+            BrokerFilterBubbleScrollView(bubbleNames: bubbleNames)
                 .frame(maxHeight: 50)
         }
         .padding()
