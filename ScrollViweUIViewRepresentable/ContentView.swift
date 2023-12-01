@@ -36,10 +36,6 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
-
 struct BrokerFilterBubbleScrollView: UIViewRepresentable {
 
     private let filterTypes: [BrokersFilterType] = BrokersFilterType.allCases
