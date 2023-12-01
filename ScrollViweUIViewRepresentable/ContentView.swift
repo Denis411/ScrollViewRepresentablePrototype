@@ -12,12 +12,15 @@ final class ViewModel: ObservableObject {
     @Published var chosenFilterType: BrokersFilterType = .all
 
     func setChosenFilter(filterType: BrokersFilterType) {
+        guard chosenFilterType != filterType else {
+            return
+        }
+        
         chosenFilterType = filterType
         print(chosenFilterType)
     }
 
 }
-
 
 struct ContentView: View {
 
@@ -25,7 +28,6 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Text("hi")
             BrokerFilterBubbleScrollView(
                 chosenFilterType: viewModel.chosenFilterType,
                 chooseFilterAction: viewModel.setChosenFilter(filterType:)
