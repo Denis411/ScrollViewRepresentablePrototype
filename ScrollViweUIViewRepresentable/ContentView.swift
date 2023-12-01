@@ -33,11 +33,11 @@ struct BrokerFilterBubbleScrollView: UIViewRepresentable {
 
     init(filterTypes: [BrokersFilterType]) {
         self.filterTypes = filterTypes
-        setStackView()
-        setScrollView()
     }
 
     func makeUIView(context: Context) -> some UIView {
+        setStackView()
+        setScrollView()
         return scrollView
     }
 
