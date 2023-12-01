@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-let bubbleNames = BrokersFilterType.allCases.map { $0.title }
 
 struct ContentView: View {
 
     var body: some View {
         VStack {
             Text("hi")
-            BrokerFilterBubbleScrollView(bubbleNames: bubbleNames)
+            BrokerFilterBubbleScrollView(filterTypes: BrokersFilterType.allCases)
                 .frame(maxHeight: 50)
         }
         .padding()
@@ -27,13 +26,13 @@ struct ContentView: View {
 
 struct BrokerFilterBubbleScrollView: UIViewRepresentable {
 
-    private let bubbleNames: [String]
+    private let filterTypes: [BrokersFilterType]
 
     private let scrollView = UIScrollView()
     private let horizontalStackView = UIStackView()
 
-    init(bubbleNames: [String]) {
-        self.bubbleNames = bubbleNames
+    init(filterTypes: [BrokersFilterType]) {
+        self.filterTypes = filterTypes
         setStackView()
         setScrollView()
     }
@@ -68,9 +67,8 @@ extension BrokerFilterBubbleScrollView {
 
     private func createBubbleViews() {
 
-        for name in bubbleNames {
-            let bubbleView = BrokerFilterBubbleCellView()
-            bubbleView.text = name
+        for type in filterTypes {
+            let bubbleView = BrokerFilterBubbleCellView(filterType: type)
             horizontalStackView.addArrangedSubview(bubbleView)
         }
 
@@ -88,9 +86,11 @@ extension BrokerFilterBubbleScrollView {
 final class BrokerFilterBubbleCellView: UILabel {
 
     private var onTapAction: (() -> Void)?
+    private let filterType: BrokersFilterType
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(filterType: BrokersFilterType) {
+        self.filterType = filterType
+        super.init(frame: .zero)
         setGestureRecognizer()
         setUpSelf()
     }
@@ -114,6 +114,7 @@ final class BrokerFilterBubbleCellView: UILabel {
     }
 
     private func setUpSelf() {
+        self.text = filterType.title
         self.numberOfLines = 1
         self.layer.cornerRadius = 12
         self.textColor = .blue
