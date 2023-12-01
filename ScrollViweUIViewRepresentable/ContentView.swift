@@ -7,13 +7,29 @@
 
 import SwiftUI
 
+final class ViewModel: ObservableObject {
+
+    @Published var chosenFilterType: BrokersFilterType = .all
+
+    func setChosenFilter(filterType: BrokersFilterType) {
+        chosenFilterType = filterType
+        print(chosenFilterType)
+    }
+
+}
+
 
 struct ContentView: View {
+
+    @StateObject var viewModel = ViewModel()
 
     var body: some View {
         VStack {
             Text("hi")
-            BrokerFilterBubbleScrollView(filterTypes: BrokersFilterType.allCases)
+            BrokerFilterBubbleScrollView(
+                chosenFilterType: viewModel.chosenFilterType,
+                chooseFilterAction: viewModel.setChosenFilter(filterType:)
+            )
                 .frame(maxHeight: 50)
         }
         .padding()
@@ -26,14 +42,21 @@ struct ContentView: View {
 
 struct BrokerFilterBubbleScrollView: UIViewRepresentable {
 
-    private let filterTypes: [BrokersFilterType]
+    private let filterTypes: [BrokersFilterType] = BrokersFilterType.allCases
+
+    private let chosenFilterType: BrokersFilterType
+    private let chooseFilterAction: (BrokersFilterType) -> Void
+
+    init(
+        chosenFilterType: BrokersFilterType,
+        chooseFilterAction: @escaping (BrokersFilterType) -> Void
+    ) {
+        self.chosenFilterType = chosenFilterType
+        self.chooseFilterAction = chooseFilterAction
+    }
 
     private let scrollView = UIScrollView()
     private let horizontalStackView = UIStackView()
-
-    init(filterTypes: [BrokersFilterType]) {
-        self.filterTypes = filterTypes
-    }
 
     func makeUIView(context: Context) -> some UIView {
         setStackView()
@@ -42,7 +65,9 @@ struct BrokerFilterBubbleScrollView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIViewType, context: Context) {
-
+        for orrangedView in horizontalStackView.arrangedSubviews {
+            (orrangedView as? BrokerFilterBubbleCellView)?.setChosenFilterType(chosenFilterType)
+        }
     }
 
 }
@@ -69,6 +94,8 @@ extension BrokerFilterBubbleScrollView {
 
         for type in filterTypes {
             let bubbleView = BrokerFilterBubbleCellView(filterType: type)
+            bubbleView.setOnTapAction(chooseFilterAction)
+            bubbleView.setChosenFilterType(chosenFilterType)
             horizontalStackView.addArrangedSubview(bubbleView)
         }
 
@@ -85,7 +112,7 @@ extension BrokerFilterBubbleScrollView {
 
 final class BrokerFilterBubbleCellView: UILabel {
 
-    private var onTapAction: (() -> Void)?
+    private var onTapAction: ((BrokersFilterType) -> Void)?
     private let filterType: BrokersFilterType
 
     init(filterType: BrokersFilterType) {
@@ -113,6 +140,14 @@ final class BrokerFilterBubbleCellView: UILabel {
         super.drawText(in: rect.inset(by: Constants.insets))
     }
 
+    public func setChosenFilterType(_ chosenFilterType: BrokersFilterType) {
+        if chosenFilterType == chosenFilterType {
+            self.layer.backgroundColor = UIColor.yellow.cgColor
+        } else {
+            self.layer.backgroundColor = UIColor.orange.cgColor
+        }
+    }
+
     private func setUpSelf() {
         self.text = filterType.title
         self.numberOfLines = 1
@@ -133,12 +168,12 @@ extension BrokerFilterBubbleCellView {
         self.addGestureRecognizer(gestureRecognizer)
     }
 
-    public func setOnTapAction(_ onTapAction: @escaping () -> Void) {
+    public func setOnTapAction(_ onTapAction: @escaping (BrokersFilterType) -> Void) {
         self.onTapAction = onTapAction
     }
 
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        onTapAction?()
+        onTapAction?(filterType)
     }
 
 }
