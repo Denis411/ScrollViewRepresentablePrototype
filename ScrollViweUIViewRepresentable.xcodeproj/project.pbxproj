@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9819CA302B19C1F900890F4A /* BrokerFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819CA2F2B19C1F900890F4A /* BrokerFilterType.swift */; };
+		9819CA322B19F35C00890F4A /* BrokerFilterBubbleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819CA312B19F35C00890F4A /* BrokerFilterBubbleCellView.swift */; };
 		984BB18A2B18D2F7000F332D /* ScrollViweUIViewRepresentableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BB1892B18D2F7000F332D /* ScrollViweUIViewRepresentableApp.swift */; };
 		984BB18C2B18D2F7000F332D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BB18B2B18D2F7000F332D /* ContentView.swift */; };
 		984BB18E2B18D2F8000F332D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 984BB18D2B18D2F8000F332D /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		9819CA2F2B19C1F900890F4A /* BrokerFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokerFilterType.swift; sourceTree = "<group>"; };
+		9819CA312B19F35C00890F4A /* BrokerFilterBubbleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokerFilterBubbleCellView.swift; sourceTree = "<group>"; };
 		984BB1862B18D2F7000F332D /* ScrollViweUIViewRepresentable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViweUIViewRepresentable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		984BB1892B18D2F7000F332D /* ScrollViweUIViewRepresentableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViweUIViewRepresentableApp.swift; sourceTree = "<group>"; };
 		984BB18B2B18D2F7000F332D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				984BB1892B18D2F7000F332D /* ScrollViweUIViewRepresentableApp.swift */,
 				984BB18B2B18D2F7000F332D /* ContentView.swift */,
+				9819CA312B19F35C00890F4A /* BrokerFilterBubbleCellView.swift */,
 				984BB18D2B18D2F8000F332D /* Assets.xcassets */,
 				984BB18F2B18D2F8000F332D /* Preview Content */,
 				9819CA2F2B19C1F900890F4A /* BrokerFilterType.swift */,
@@ -142,6 +145,7 @@
 			files = (
 				9819CA302B19C1F900890F4A /* BrokerFilterType.swift in Sources */,
 				984BB18C2B18D2F7000F332D /* ContentView.swift in Sources */,
+				9819CA322B19F35C00890F4A /* BrokerFilterBubbleCellView.swift in Sources */,
 				984BB18A2B18D2F7000F332D /* ScrollViweUIViewRepresentableApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
