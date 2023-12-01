@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @Environment(\.layoutDirection) private var layoutDirection
-
     var body: some View {
         VStack {
             Text("hi")
@@ -18,7 +16,6 @@ struct ContentView: View {
                 .frame(maxHeight: 50)
         }
         .padding()
-        .environment(\.layoutDirection, .rightToLeft)
     }
 }
 
@@ -40,7 +37,7 @@ struct BrokerFilterBubbleScrollView: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> some UIView {
-        scrollView
+        return scrollView
     }
 
     func updateUIView(_ uiView: UIViewType, context: Context) {
@@ -92,6 +89,12 @@ final class BrokerFilterBubbleCellView: UILabel {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setGestureRecognizer()
+        setUpSelf()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override var intrinsicContentSize: CGSize {
@@ -106,15 +109,9 @@ final class BrokerFilterBubbleCellView: UILabel {
 
     override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: Constants.insets))
-        setUpSelf()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     private func setUpSelf() {
-        setGestureRecognizer()
         self.numberOfLines = 1
         self.layer.cornerRadius = 12
         self.textColor = .blue
@@ -129,7 +126,7 @@ extension BrokerFilterBubbleCellView {
     @inline(__always)
     private func setGestureRecognizer() {
         isUserInteractionEnabled = true
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(performOnTapAction))
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.addGestureRecognizer(gestureRecognizer)
     }
 
@@ -137,7 +134,7 @@ extension BrokerFilterBubbleCellView {
         self.onTapAction = onTapAction
     }
 
-    @objc func performOnTapAction() {
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
         onTapAction?()
     }
 
